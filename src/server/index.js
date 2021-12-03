@@ -1,4 +1,3 @@
-// var path = require("path");
 const axios = require("axios");
 const express = require("express");
 const mockAPIResponse = require("./mockAPI.js");
@@ -19,17 +18,14 @@ app.get("/test", function (req, res) {
 });
 app.post("/nlp", function (req, res) {
   const { url } = req.body;
+  const axiosUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${API_KEY}&url=${url}&lang=en`;
   axios
-    .get(
-      `https://api.meaningcloud.com/sentiment-2.1?key=${API_KEY}&url=${url}&lang=en`
-    )
+    .get(axiosUrl)
     .then((response) => {
       const { agreement, subjectivity, irony, confidence } = response.data;
-      console.log(response.data);
       res.send({ agreement, subjectivity, irony, confidence });
     })
     .catch((err) => {
-      console.log(err);
       res.status(400);
     });
 });
