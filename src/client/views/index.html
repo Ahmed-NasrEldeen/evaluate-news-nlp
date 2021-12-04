@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <script>
-    // Check that service workers are supported
-    if ("serviceWorker" in navigator) {
-      // Use the window load event to keep the page load performant
-
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
-      });
-    }
-  </script>
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
   </head>
 
   <body>
+    <script>
+      // Check that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
+
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js", {
+            scope: "/",
+          });
+        });
+      }
+    </script>
     <header>
       <div class="">Logo</div>
       <div class="">navigation</div>
@@ -23,26 +25,21 @@
 
     <main>
       <section>
+        <h1>Website Sentiment Analysis</h1>
+        <br />
         <form class="" onsubmit="return Client.handleSubmit(event)">
-          <input
-            id="name"
-            type="text"
-            name="input"
-            value=""
-            placeholder="URL"
-          />
+          <input id="name" type="url" name="input" value="" placeholder="URL" />
           <input
             type="submit"
-            name=""
+            name="submit"
             value="submit"
-            onclick="return Client.handleSubmit(event)"
             onsubmit="return Client.handleSubmit(event)"
           />
         </form>
       </section>
 
       <section>
-        <strong>Form Results:</strong>
+        <h1>Form Results:</h1>
         <div id="results"></div>
       </section>
     </main>

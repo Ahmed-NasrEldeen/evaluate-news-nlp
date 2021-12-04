@@ -6,11 +6,17 @@ const app = express();
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
+app.use(express.static("dist"));
+
+console.log(__dirname);
 
 const port = process.env.PORT || 8081;
 const API_KEY = process.env.API_KEY;
 app.listen(process.env.PORT || 8081, function () {
   console.log(`listening on port ${port}!`);
+});
+app.get("/", function (req, res) {
+  res.sendFile("dist/index.html");
 });
 
 app.get("/test", function (req, res) {
